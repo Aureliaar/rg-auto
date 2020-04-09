@@ -90,7 +90,8 @@ def buy_all(merc=False):
     click(*buyall_pos, wait=250)
 
 def buy(index, wait=33):
-    click(60+60*(index%7), 180+60*math.floor(index/7), wait)
+    index = index-1
+    click(120+60*(index%7), 180+60*math.floor(index/7), wait)
 
 def load_template(template):
     click(*buyall_pos, wait=500)
