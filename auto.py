@@ -6,23 +6,9 @@ import time
 import random
 import math
 
-window_name = "Realm Grinder"
-y_offset = 32
-#positions
-#menus
-buyall_pos = (285, 85)
-buyall_merc_pos = (215, 85)
-abdicate_pos = (220, 56)
-confirm_abdicate_pos = (774, 828)
-exca_pos = (180, 86)
-template_pos=(853, 600)
-template_1st_pos=(821, 720)
-research_template_pos = (411,48)
-import_pos=(880, 950)
-buy_third = (241, 177) #bloodline after all other buys
-titan_bloodline = (780, 759)
+from positions import *
 
-close_merc_menu_pos =(1070, 70)
+
 
 global_wait_mult=1
 DEBUG_CLICKS=False
@@ -36,16 +22,16 @@ def wfocused():
 
 #buildings
 def building(index):
-    return (1600, 340+60*index)
+    return (farm_click[0], farm_click[1]+60*(index-1))
 
 def spell(index):
-    click(1400, 450+50*index)
+    click(tc_click[0], tc_click[1]+50*(index-1))
 
 def menu(index, wait=100):
-    click(42, 413+75*index, wait)
+    click(up_click[0], up_click[1]+75*(index-1), wait)
 
 def confirm_template(index):
-    click(820, 698+20*index)
+    click(confirm_template_click[0], confirm_template_click[1]+20*(index-1))
     click(*import_pos, wait=100)
 
 
