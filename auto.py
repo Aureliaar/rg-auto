@@ -17,6 +17,7 @@ confirm_abdicate_pos = (774, 828)
 exca_pos = (180, 86)
 template_pos=(853, 600)
 template_1st_pos=(821, 720)
+research_template_pos = (411,48)
 import_pos=(880, 950)
 buy_third = (241, 177) #bloodline after all other buys
 titan_bloodline = (780, 759)
@@ -26,7 +27,6 @@ close_merc_menu_pos =(1070, 70)
 global_wait_mult=1
 DEBUG_CLICKS=False
 
-tricaster_template = "GB1,UD2,UD5,UD7,DM3,TT6,DD5,DD6,DD7,DD9,DN3,DW8,SP:Grand Balance,SP:Fairy Chanting"
 
 def wfocused():
     focused = win32gui.GetForegroundWindow()
@@ -41,8 +41,13 @@ def building(index):
 def spell(index):
     click(1400, 450+50*index)
 
-def menu(index):
-    return (42, 413+75*index)
+def menu(index, wait=100):
+    click(42, 413+75*index, wait)
+
+def confirm_template(index):
+    click(820, 698+20*index)
+    click(*import_pos, wait=100)
+
 
 def click(x, y, wait=33):
     hWnd = win32gui.FindWindow(None, window_name)
@@ -70,17 +75,17 @@ def safe_click_all_buildings():
 
 def abdicate(safe=True, need_confirm=False):
     if safe: 
-        click(*menu(2), wait=500)
-        click(*menu(1), wait=500)
+        menu(2, wait=500)
+        menu(1, wait=500)
     click(*abdicate_pos, wait=500)
     if not need_confirm:
         click(*confirm_abdicate_pos, wait=500)
 
 def exca(wait=250):
-    click(*menu(1), wait=250)
-    click(*menu(2), wait=250)
+    menu(1, wait=250)
+    menu(2, wait=250)
     click(*exca_pos, wait=250)
-    click(*menu(1), wait=250)
+    menu(1, wait=250)
 
 
 def buy_all(merc=False):
@@ -93,18 +98,28 @@ def buy(index, wait=33):
     index = index-1
     click(120+60*(index%7), 180+60*math.floor(index/7), wait)
 
-def load_template(template):
+def load_merc_template():
     click(*buyall_pos, wait=500)
     click(*template_pos, wait=250)
     click(*template_1st_pos, wait=250)
     click(*import_pos, wait=500)
 
-def merc_load_template():
+def mercExcaAndLoad():
     buy_all(merc=True)
     exca()
     spell(1)
-    load_template(tricaster_template)
+    load_merc_template()
     time.sleep(2)
+
+def safe(func, *args, **kwargs):
+    if not wfocused(): return 
+    func(*args, **kwargs)
+
+
+def load_research_template(index):
+    click(*research_template_pos, wait=250)
+    confirm_template(index)
+
 
 def tricaster():
     abdicate()
@@ -122,7 +137,7 @@ def tricaster():
     spell(2)
     #Template safe buy
     for i in range(1, 4):
-        merc_load_template()
+        mercExcaAndLoad()
 
 
     #Bloodline
