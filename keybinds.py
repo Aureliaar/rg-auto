@@ -16,6 +16,8 @@ keyboard.add_hotkey('q', lambda: safe(load_research_template, 1)         )
 keyboard.add_hotkey('w', lambda: safe(load_research_template, 2)         )
 keyboard.add_hotkey('e', lambda: safe(load_research_template, 3)         )
 keyboard.add_hotkey('r', lambda: safe(load_research_template, 4)         )
+keyboard.add_hotkey('c', lambda: safe(load_research_template, 4)         )
+
 
 
 keyboard.wait()

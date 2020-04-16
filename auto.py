@@ -24,8 +24,9 @@ def wfocused():
 def building(index):
     return (farm_click[0], farm_click[1]+60*(index-1))
 
-def spell(index):
-    click(tc_click[0], tc_click[1]+50*(index-1))
+def spell(index, ctrl=False):
+    click(tc_click[0], tc_click[1]+50*(index-1), ctrl=ctrl)
+
 
 def menu(index, wait=100):
     click(up_click[0], up_click[1]+75*(index-1), wait)
@@ -35,14 +36,16 @@ def confirm_template(index):
     click(*import_pos, wait=100)
 
 
-def click(x, y, wait=33):
+def click(x, y, wait=33, ctrl=False):
     hWnd = win32gui.FindWindow(None, window_name)
     lParam = win32api.MAKELONG(x, y-y_offset)
     if DEBUG_CLICKS:
         print("{},{}".format(x,y))
 
+
     win32api.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
     win32api.SendMessage(hWnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, lParam)
+
     time.sleep(global_wait_mult * wait/1000)
 
 def safe_click(x, y, wait=33):
@@ -100,7 +103,6 @@ def mercExcaAndLoad():
 def safe(func, *args, **kwargs):
     if not wfocused(): return 
     func(*args, **kwargs)
-
 
 def load_research_template(index):
     click(*research_template_pos, wait=250)
@@ -167,3 +169,47 @@ def cast_spell(index, first_buy=7, second_buy=5):
     time.sleep(0.5)
     spell(index)
     time.sleep(0.5)
+
+def multi(n, delay, abdicate_when_done, func, *args, **kwargs):
+    for i in range(0, n):
+        func(*args, **kwargs)
+        print(i)
+        time.sleep(delay/1000)
+    if abdicate_when_done:
+        abdicate()
+
+def dwangel():
+    abdicate()
+    buy(5) #good
+    buy(10) #angel
+    buy_all()
+    click_all_buildings()
+    #Bloodline
+    buy(21)
+    time.sleep(0.5)
+    click(*druid_bloodline)
+
+    exca()
+    buy_all()
+    time.sleep(0.2)
+    buy(6) #dwarf
+    buy_all()
+
+
+def dwangel_spells():
+    spell(2)
+    spell(3)
+    spell(4)
+    spell(5)
+    spell(6) 
+    for i in range(1, 100):
+        click(1)
+
+def reset_spell(index):
+    hWnd = win32gui.FindWindow(None, window_name)
+
+    win32api.SendMessage(hWnd, win32con.WM_KEYDOWN, ord('r'), 0)
+    spell(index)
+    win32api.SendMessage(hWnd, win32con.WM_KEYUP, ord('r'), 0)
+
+brainwave_cancel_pos = (1128, 815)

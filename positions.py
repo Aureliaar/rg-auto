@@ -20,6 +20,6 @@ research_template_pos = (411,48)
 import_pos=(880, 950)
 buy_third = (241, 177) #bloodline after all other buys
 titan_bloodline = (780, 759)
-
+druid_bloodline = (840, 759)
 close_merc_menu_pos =(1070, 70)
 
