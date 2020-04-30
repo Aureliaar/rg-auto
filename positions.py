@@ -2,6 +2,7 @@ farm_click = (1600, 400)
 tc_click = (1400, 500)
 up_click = (42, 478)
 
+ls_reset = (1153, 847)
 confirm_template_click = (820, 718)
 
 
