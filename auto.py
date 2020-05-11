@@ -9,6 +9,7 @@ import math
 from positions import *
 
 
+window_name = "Realm Grinder"
 
 global_wait_mult=1
 DEBUG_CLICKS=False

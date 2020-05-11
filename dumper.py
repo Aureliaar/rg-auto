@@ -5,7 +5,7 @@ def on_move(x, y):
     pass
 
 def on_click(x, y, button, pressed):
-    if pressed and wfocused():
+    if pressed:
         print("{}, {}".format(x, y))
 
 def on_scroll(x, y, dx, dy):

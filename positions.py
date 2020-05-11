@@ -6,7 +6,6 @@ ls_reset = (1153, 847)
 confirm_template_click = (820, 718)
 
 
-window_name = "Realm Grinder"
 y_offset = 32
 #positions
 #menus
@@ -24,3 +23,5 @@ titan_bloodline = (780, 759)
 druid_bloodline = (840, 759)
 close_merc_menu_pos =(1070, 70)
 
+
+minihealer_restart = (280, 890)
