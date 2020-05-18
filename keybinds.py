@@ -16,6 +16,9 @@ keyboard.add_hotkey('q', lambda: safe(load_research_template, 1)         )
 keyboard.add_hotkey('w', lambda: safe(load_research_template, 2)         )
 keyboard.add_hotkey('e', lambda: safe(load_research_template, 3)         )
 keyboard.add_hotkey('r', lambda: safe(load_research_template, 4)         )
+keyboard.add_hotkey('t', lambda: safe(load_research_template, 5)         )
+keyboard.add_hotkey('y', lambda: safe(load_research_template, 6)         )
+
 keyboard.add_hotkey('v', lambda: safe_click(*buyall_merc_pos)         )
 
 
