@@ -12,7 +12,7 @@ from positions import *
 window_name = "Realm Grinder"
 
 global_wait_mult=1
-DEBUG_CLICKS=False
+DEBUG_CLICKS=True
 
 
 def wfocused():
@@ -23,7 +23,7 @@ def wfocused():
 
 #buildings
 def building(index):
-    return (farm_click[0], farm_click[1]+60*(index-1))
+    return (farm_click[0], farm_click[1]+75*(index-1))
 
 def spell(index, ctrl=False):
     click(tc_click[0], tc_click[1]+50*(index-1), ctrl=ctrl)
@@ -39,9 +39,10 @@ def confirm_template(index):
 
 def click(x, y, wait=33, ctrl=False):
     hWnd = win32gui.FindWindow(None, window_name)
-    lParam = win32api.MAKELONG(x, y-y_offset)
+    lParam = win32api.MAKELONG(int(x / DPI_SCALE), int((y-y_offset) / DPI_SCALE))
     if DEBUG_CLICKS:
-        print("{},{}".format(x,y))
+        print("{},{} - ({}, {})".format(x, y-y_offset, int(x / DPI_SCALE), int((y-y_offset) / DPI_SCALE)))
+        
 
 
     win32api.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
@@ -90,7 +91,7 @@ def buy(index, wait=33):
 
 def load_merc_template():
     click(*buyall_pos, wait=500)
-    click(*template_pos, wait=250)
+    #click(*template_pos, wait=250)
     click(*template_1st_pos, wait=250)
     click(*import_pos, wait=500)
 

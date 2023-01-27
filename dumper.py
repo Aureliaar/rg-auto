@@ -1,6 +1,7 @@
 from pynput.mouse import Listener
 from auto import wfocused
 
+
 def on_move(x, y):
     pass
 

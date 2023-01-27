@@ -1,5 +1,5 @@
 keyboard==0.13.5
 pynput==1.6.8
 pypiwin32==223
-pywin32==227
+pywin32
 six==1.14.0
